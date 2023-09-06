@@ -6,9 +6,19 @@ const UserModel = require("./models/User");
 const UserResponseModel = require("./models/UserResponse")
 const server = require('./app');
 
-const sequelize = new Sequelize(
-    DB_DEPLOY,
-   { logging: false, native: false }
+const sequelize = new Sequelize( 
+   DB_DEPLOY, 
+   {
+      logging: false,
+      native: false,
+      dialectOptions: {
+         acquireTimeout: 9000,
+         ssl: {
+           require: true,
+           rejectUnauthorized: false // Solo si tienes problemas con certificados autofirmados
+         }
+       } 
+   }
 );
 FormModel(sequelize);
 UserModel(sequelize);
