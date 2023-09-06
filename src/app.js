@@ -2,10 +2,7 @@ const express = require('express');
 const server = express();
 const router = require("./routes/index");
 const morgan= require("morgan");
-const cors = require("cors")
-const corsOptions = {origin:"*",}
 
-server.use(cors(corsOptions));
 server.use(express.json());
 server.use(morgan("dev"));
 
