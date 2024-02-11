@@ -2,7 +2,7 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const { DB_DEPLOY } = process.env;
 const FormModel = require("./models/Form");
-const UserModel = require("./models/User");
+const UserModel = require("./models/User1");
 const UserResponseModel = require("./models/UserResponse")
 const server = require('./app');
 
@@ -23,16 +23,16 @@ const sequelize = new Sequelize(
 FormModel(sequelize);
 UserModel(sequelize);
 UserResponseModel(sequelize)
-const { User, Form, UserResponse } = sequelize.models;
+const { User1, Form, UserResponse } = sequelize.models;
 
-User.hasMany(UserResponse);
-UserResponse.belongsTo(User);
+User1.hasMany(UserResponse);
+UserResponse.belongsTo(User1);
 
 Form.hasMany(UserResponse);
 UserResponse.belongsTo(Form);
 
 module.exports = {
-   User,
+   User1,
    Form,
    UserResponse,
    conn: sequelize,
