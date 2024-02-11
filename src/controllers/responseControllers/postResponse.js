@@ -1,15 +1,15 @@
 const { UserResponse } = require('../../DB_connection');
 
-const postResponse = async ({ FormId, UserId, formData }) => {
+const postResponse = async ({ FormId, User1Id, formData }) => {
 
-    if (!FormId || !UserId || !formData) {
+    if (!FormId || !User1Id || !formData) {
         throw Error("Faltan datos");
     }
-    const exists = await UserResponse.findOne({ where: { FormId, UserId } })
+    const exists = await UserResponse.findOne({ where: { FormId, User1Id } })
     if (exists) throw Error("Este Formulario ya se completó")
     const response = await UserResponse.create({
         FormId,
-        UserId,
+        User1Id,
         formData,
     });
     return response;
